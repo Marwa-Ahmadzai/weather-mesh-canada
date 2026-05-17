@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Mesh Canada - Week 2: Advanced Mesh</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Leaflet.js for maps (free, no API key needed) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌨️ Weather Mesh Canada - Week 2</h1>
+            <p>Advanced mesh simulation with packet loss & network partitions</p>
+        </header>
+
+        <!-- NEW: Advanced Controls -->
+        <div class="advanced-controls">
+            <div class="control-group">
+                <label>📡 Packet Loss: <span id="packetLossValue">0</span>%</label>
+                <input type="range" id="packetLossSlider" min="0" max="100" value="0">
+                <small>Simulates bad weather / weak signals</small>
+            </div>
+            
+            <div class="control-group">
+                <label>🔲 Network Partition:</label>
+                <button id="partitionBtn" class="warning-btn">Split Network (Group A vs B)</button>
+                <button id="healPartitionBtn">Heal Network</button>
+                <small id="partitionStatus">No partition active</small>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="addNodeBtn">➕ Add Node</button>
+            <button id="createAlertBtn" disabled>⚠️ Create Alert</button>
+            <button id="resetBtn">🔄 Reset All</button>
+        </div>
+
+        <div class="stats">
+            <div>Active Nodes: <span id="nodeCount">0</span></div>
+            <div>Total Alerts: <span id="alertCount">0</span></div>
+            <div>Packets Dropped: <span id="droppedCount">0</span></div>
+        </div>
+
+        <!-- NEW: Map visualization -->
+        <div class="map-container">
+            <h3>🗺️ Mesh Network Topology</h3>
+            <div id="meshMap" style="height: 400px; border-radius: 10px;"></div>
+            <p class="map-caption">Lines show alert propagation paths | Red = Alert in progress | Green = Healthy node</p>
+        </div>
+
+        <div class="main-panel">
+            <div class="nodes-panel">
+                <h3>Mesh Nodes</h3>
+                <div id="nodesList">No nodes yet. Click "Add Node".</div>
+            </div>
+            <div class="alerts-panel">
+                <h3>Alert Activity Log</h3>
+                <div id="alertLog">Waiting for alerts...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="mesh/Node.js"></script>
+    <script src="mesh/PeerManager.js"></script>
+    <script src="week2/map-visualization.js"></script>
+    <script src="week2/packet-loss.js"></script>
+    <script src="week2/partition.js"></script>
+    <script src="app.js"></script>
+    <!-- Week 3: Store & Forward + Real Weather -->
+    <script src="week3/store-forward.js"></script>
+    <script src="week3/real-weather.js"></script>
+</body>
+</html>
